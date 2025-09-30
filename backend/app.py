@@ -13,7 +13,8 @@ SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), 'credentials.json
 
 # The email of the user to impersonate.
 # This should be a super administrator in your Google Workspace.
-ADMIN_USER_EMAIL = 'dyolovsky@solitex.biz'
+# It's recommended to set this as an environment variable for production.
+ADMIN_USER_EMAIL = os.environ.get('ADMIN_USER_EMAIL', 'dyolovsky@solitex.biz')
 
 # Scopes required for the Admin SDK and Gmail API
 SCOPES = [
@@ -99,6 +100,5 @@ def manage_signature(user_email):
         print(f"An unexpected error occurred: {e}")
         return jsonify({"error": "An unexpected error occurred."}), 500
 
-if __name__ == '__main__':
-    # Note: Using debug=True in a production environment is not recommended.
-    app.run(host='0.0.0.0', port=5000, debug=True)
+# The application is now intended to be run with a production WSGI server like Gunicorn.
+# Example command: gunicorn --bind 0.0.0.0:5000 app:app

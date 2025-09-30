@@ -51,7 +51,7 @@ Before you begin, ensure you have the following:
       ```
     - Click **Authorize**.
 
-## How to Run the Application
+## How to Run the Application Locally
 
 ### Backend Setup
 
@@ -67,9 +67,9 @@ Before you begin, ensure you have the following:
     pip install -r backend/requirements.txt
     ```
 
-4.  **Run the Backend Server**:
+4.  **Run the Backend Server with Gunicorn**:
     ```bash
-    python backend/app.py
+    gunicorn --chdir backend --bind 0.0.0.0:5000 app:app
     ```
     The backend will be running at `http://localhost:5000`.
 
@@ -86,3 +86,16 @@ Before you begin, ensure you have the following:
     - Open your web browser and go to `http://localhost:8000`.
 
 You should now see the Gmail Signature Manager, with a list of your Google Workspace users. You can select a user to view and edit their signature.
+
+## Deployment
+
+This application is configured for deployment on platforms that support Python buildpacks and `Procfile`, such as Heroku.
+
+1.  **Create a new application** on your hosting platform of choice.
+2.  **Set up environment variables**:
+    - You will need to provide the contents of your `credentials.json` file as an environment variable. A common approach is to base64 encode the JSON file and then decode it in your application at runtime.
+    - You will also need to set the `ADMIN_USER_EMAIL` as an environment variable.
+    - The code would need to be modified to read these from the environment instead of a file.
+3.  **Push your code** to the platform's Git remote. The platform will detect the `requirements.txt` and `Procfile`, install dependencies, and start the web server.
+
+**Note**: For a production deployment, you would also need to build and serve the frontend files from the same web server as the backend (e.g., using a library like `WhiteNoise`) or host the frontend on a static hosting service and configure CORS settings appropriately.

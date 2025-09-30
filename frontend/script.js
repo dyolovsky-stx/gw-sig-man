@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedUserEmail = document.getElementById('selected-user-email');
     const saveSignatureBtn = document.getElementById('save-signature');
 
-    const API_BASE_URL = 'http://localhost:5000/api';
+    const API_BASE_URL = '/api'; // Use a relative path for the API
     let selectedUser = null;
 
     // Initialize TinyMCE
