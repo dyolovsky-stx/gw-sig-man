@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Signature Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gmail Signature Manager</h1>
+        <div class="main-content">
+            <div class="user-list-container">
+                <h2>Workspace Users</h2>
+                <ul id="user-list">
+                    <!-- Users will be loaded here dynamically -->
+                </ul>
+            </div>
+            <div class="signature-editor-container">
+                <h2>Edit Signature</h2>
+                <p><strong>Selected User:</strong> <span id="selected-user-email">None</span></p>
+                <div id="editor"></div>
+                <button id="save-signature" disabled>Save Signature</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TinyMCE Rich Text Editor -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="script.js"></script>
+</body>
+</html>
